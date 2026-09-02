@@ -1,14 +1,19 @@
 package com.heriberto.webapp.jaxws.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.*;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlTransient;
 
+import java.nio.file.attribute.UserPrincipal;
+
 // @XmlRootElement
 @Entity
 @Table(name = "cursos")
-public class Course {
+public class Course implements UserPrincipal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,7 +25,11 @@ public class Course {
     private String description;
 
     // @XmlTransient
-    private String instructor;
+//    @JsonbTransient
+//    @JsonIgnore
+    @JsonIgnoreProperties({"courses", "handler", "hibernateLazyInitializer"})
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Instructor instructor;
 
     @Column(name = "duracion")
     private Double duration;
@@ -57,11 +66,11 @@ public class Course {
         this.description = description;
     }
 
-    public String getInstructor() {
+    public Instructor getInstructor() {
         return instructor;
     }
 
-    public void setInstructor(String instructor) {
+    public void setInstructor(Instructor instructor) {
         this.instructor = instructor;
     }
 

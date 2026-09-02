@@ -15,12 +15,15 @@ public class CourseRepositoryImpl implements CourseRepository {
 
     @Override
     public List<Course> findAll() {
-        return em.createQuery("from Course", Course.class).getResultList();
+        return em.createQuery("select c from Course c left outer join fetch c.instructor", Course.class).getResultList();
     }
 
     @Override
     public Course byId(Long id) {
-        return em.find(Course.class, id);
+        return em.createQuery("select c from Course c left outer join fetch c.instructor where c.id=:id", Course.class)
+                .setParameter("id", id)
+                .getSingleResult();
+
     }
 
     @Override
