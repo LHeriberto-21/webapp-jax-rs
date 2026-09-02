@@ -35,7 +35,6 @@ public class CourseServiceImpl implements CourseService {
         return courseRepository.save(course);
     }
 
-
     @Override
     @RolesAllowed({"ADMIN"})
     public void deleteById(Long id) {
