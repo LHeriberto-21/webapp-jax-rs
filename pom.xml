@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
 
-    <groupId>com.heriberto.webapp.jaxrs</groupId>
-    <artifactId>webapp-jax-rs</artifactId>
+    <groupId>com.heriberto.webapp.jax.rs.jaas</groupId>
+    <artifactId>webapp-jax-rs-jaas</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
@@ -38,7 +38,7 @@
         <dependency>
             <groupId>jakarta.xml.ws</groupId>
             <artifactId>jakarta.xml.ws-api</artifactId>
-            <version>3.0.1</version>
+            <version>4.0.3</version>
             <scope>provided</scope>
         </dependency>
 
